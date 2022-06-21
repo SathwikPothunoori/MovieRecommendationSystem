@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Movie Recommendation System</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'home.css'%}">
+  {% comment %} <style>
+    
+body{
+  margin: 0;
+  background-image: url('static/netflix.png');
+  background-size: cover;
+  
+}
+.nav_container ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: rgb(28, 27, 27);
+    height: 5%;
+
+
+  }
+  
+  .nav_container ul a{
+    text-decoration: none;
+
+  }
+  li {
+    float: left;
+  }
+  .nav_container h3{
+    color: azure;
+    margin-left: 5%;
+    font-size:x-large;
+  }
+  li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 0px 10px 0px 16px;
+    margin-left: 2000%;
+    margin-top: -70%;
+    text-decoration: none;
+    font-weight:bold;
+  }
+  
+  /* Change the link color to #111 (black) on hover */
+  li a:hover {
+    background-color: rgb(48, 48, 48);
+    
+  }
+ .form_details #searchbtn{
+    margin: 12% 35% 5% 0%;
+    padding: 0.5% 3%;
+    border-radius: 11px;
+    background-color: rgb(198, 41, 41);
+    color: rgb(3, 3, 3);
+    font-size: large;
+    font-weight: 200;
+    border: black;
+
+
+  }
+  .form_details #searchbtn:hover{
+    background-color: black;
+    color: azure;
+    cursor:pointer;
+  
+    }
+  </style> {% endcomment %}
+
+  </head>
+  <body>
+    <div class="containerbody">
+      <header >
+        <nav class="nav_container">
+          <ul>
+            <center><a href=""><h2 style='margin-right:6%;' class='glow'>Movie Recommendation System</h2></a></center>
+            
+          
+    
+          </ul>
+        </nav> 
+        </header>
+        <div class="content_main">
+           <center>  
+                     <div >Bored and searching for a movie ??   </div>
+                     <div>Tell us a movie you liked and I will give you suggestions</div>
+          </center>
+        </div>
+        <div class="container">
+            
+            <div class='form_details'>
+                <form class="d-flex" method="POST" role="search">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                  
+                <input type="text" name="movie" class="form-control" required id="id_movie" placeholder='Enter Movie'>
+                <input type="number" name="year" value="1916" class="form-control" required id="id_year">
+                <center><button class="btn btn-outline-success" type="submit" id="searchbtn">Recommend</button></center>
+                </form>
+          </div>
+        </div>
+
+        <div class="errorContainer">
+          <center><div id='errortext'>{{error}}</div></center>
+          
+        </div>
+        {% block body %}{% endblock body %}
+        
+    </div>
+    
+  </body>
+</html>
